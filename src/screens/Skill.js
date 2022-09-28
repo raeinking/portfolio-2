@@ -4,7 +4,7 @@ import React from 'react'
 export default function Skill() {
   return (
     <View>
-      <Text>Dissslsdl</Text>
+      <Text>Dissslssdl</Text>
     </View>
   )
 }
