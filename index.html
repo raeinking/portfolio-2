@@ -59,9 +59,9 @@
                     <li><a href="#section-about">About Me</a></li>
                     <li></li>
                     <li><a href="#section-portfolio">Portfolio</a></li>
-                    <li></li>
+                    <!-- <li></li>
                     <li><a href="#section-blog">Blog</a></li>
-                    <li></li>
+                    <li></li> -->
                     <li><a href="#section-contact">Contact</a></li>
                     <li></li>
                   </ul>
@@ -766,6 +766,34 @@
                     <div class="item col-md-4 mb30 gallery-item website">
                       <a
                       class="picframe"
+                      href="images/portfolio/20.jpg"
+                      title="Simple Todo Landing Page"
+                      >
+                      <span class="overlay">
+                        <span class="d-title">Simple Todo Landing Page</span>
+                      </span>
+                      <img src="images/portfolio/20.jpg" alt="" />
+                    </a>
+                    </div>
+                    <!-- close gallery item -->
+                    <!-- gallery item -->
+                    <div class="item col-md-4 mb30 gallery-item website">
+                      <a
+                      class="picframe"
+                      href="images/portfolio/21.jpg"
+                      title="Snake Game"
+                      >
+                      <span class="overlay">
+                        <span class="d-title">Snake Game</span>
+                      </span>
+                      <img src="images/portfolio/21.jpg" alt="" />
+                    </a>
+                    </div>
+                    <!-- close gallery item -->
+                    <!-- gallery item -->
+                    <div class="item col-md-4 mb30 gallery-item website">
+                      <a
+                      class="picframe"
                       href="images/portfolio/11.jpg"
                       title="Website Design Delta"
                       data-source="https://website-design-delta.vercel.app/"
@@ -873,7 +901,7 @@
         </section>
         <!-- section close -->
 
-        <!-- section begin -->
+        <!-- section begin
         <section id="section-blog" class="dark">
           <div class="container">
             <div class="row">
@@ -1046,7 +1074,7 @@
               </div>
             </div>
           </div>
-        </section>
+        </section> -->
         <!-- section close -->
 
         <!-- section begin -->
@@ -1065,7 +1093,7 @@
               class="row form-default wow fadeInRight"
               data-wow-delay=".25s"
               method="post"
-              action="email.php"
+              action="javascript:void(0);"
             >
               <div class="col-md-6">
                 <div class="field-set">
@@ -1114,17 +1142,18 @@
               <div class="col-md-12 text-center">
                 <div id="submit">
                   <input
-                    type="submit"
-                    id="send_message"
+                    type="button"
+                    id="send_button"
                     value="Send"
                     class="btn btn-custom color-2"
+                    onclick="submitForm();"
                   />
                 </div>
                 <div id="mail_success" class="success">
                   Your message has been sent successfully.
                 </div>
                 <div id="mail_fail" class="error">
-                  Sorry, error occured this time sending your message.
+                  Sorry, an error occurred while sending your message.
                 </div>
               </div>
             </form>
@@ -1136,6 +1165,61 @@
 
     <!-- Javascript Files
     ================================================== -->
+    <script>
+      function submitForm() {
+  const form = document.getElementById("contact_form");
+  const submitButton = document.getElementById("send_button");
+  const successMessage = document.getElementById("mail_success");
+  const errorMessage = document.getElementById("mail_fail");
+
+  // Disable the submit button and show "Sending..."
+  submitButton.disabled = true;
+  submitButton.value = "Sending...";
+
+  // Simulate form submission (replace with actual submission code)
+  setTimeout(function() {
+    // After a timeout (simulating asynchronous behavior)
+    // Enable the button and show appropriate messages
+    submitButton.disabled = false;
+    submitButton.value = "Send";
+    successMessage.style.display = "block";
+    errorMessage.style.display = "none";
+
+    // Create headers for the Fetch API
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json"); // Change to JSON content type
+
+    // Create the JSON payload
+    const payload = {
+      name: form.querySelector("#name").value,
+      email: form.querySelector("#email").value,
+      phone: form.querySelector("#phone").value,
+      message: form.querySelector("#message").value,
+    };
+
+    // Use Fetch API to submit the form with custom headers
+    fetch("https://node-email-sendersss.glitch.me/rayan", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload), // Send JSON payload
+    })
+      .then(response => {
+        if (response.ok) {
+          // Handle success response
+          console.log('success')
+        } else {
+          // Handle error response
+          console.log('success failed')
+        }
+      })
+      .catch(error => {
+        // Handle fetch error
+        console.log(error.message)
+      });
+  }, 2000); // Simulating a 2-second delay
+}
+    </script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/jpreLoader.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
